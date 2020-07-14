@@ -1,0 +1,40 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+body {
+  font-family: "Palatino", "Georgia", "Times New Roman", serif;
+}
+
+section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+  padding: 30px;
+}
+
+h1 {
+  font-size: 48px;
+}
+
+h3 {
+  font-size: 22px;
+  font-weight: normal;
+  padding-top: 20px;
+}
+
+blockquote {
+  font-size: 17.5px;
+  padding-top: 35px;
+  width: 40%;
+  line-height: 1.6;
+}
+
+.source {
+  width: 40%;
+  text-align: right;
+  padding-top: 15px;
+}
