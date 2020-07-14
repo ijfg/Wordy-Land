@@ -11,9 +11,10 @@ section {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content:center;
+  justify-content: start;
   align-items: center;
   padding: 30px;
+  margin-top: 200px;
 }
 
 h1 {
