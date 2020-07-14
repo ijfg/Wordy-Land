@@ -14,7 +14,7 @@ section {
   justify-content: start;
   align-items: center;
   padding: 30px;
-  margin-top: 200px;
+  margin-top: 230px;
 }
 
 h1 {
@@ -28,7 +28,9 @@ h3 {
 }
 
 blockquote {
-  font-size: 17.5px;
+  font-size: 18px;
+  font-style: italic;
+  letter-spacing: 0.15px;
   padding-top: 35px;
   width: 40%;
   line-height: 1.6;
@@ -37,5 +39,6 @@ blockquote {
 .source {
   width: 40%;
   text-align: right;
-  padding-top: 15px;
+  padding-top: 20px;
+  font-style: italic;
 }
