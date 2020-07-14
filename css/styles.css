@@ -14,11 +14,12 @@ section {
   justify-content: start;
   align-items: center;
   padding: 30px;
-  margin-top: 230px;
+  margin-top: 32%;
 }
 
 h1 {
   font-size: 48px;
+  text-align: center;
 }
 
 h3 {
@@ -33,14 +34,15 @@ blockquote {
   font-style: italic;
   letter-spacing: 0.15px;
   padding-top: 35px;
-  width: 80%;
+  width: 85%;
   line-height: 1.6;
 }
 
 .source {
-  width: 80%;
+  width: 85%;
   text-align: right;
   padding-top: 20px;
+  padding-right: 30px;
   font-style: italic;
 }
 
@@ -61,5 +63,9 @@ blockquote {
 
   .source {
     width: 40%;
+  }
+
+  section {
+    margin-top: 230px;
   }
 }
