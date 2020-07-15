@@ -8,15 +8,12 @@ body {
 }
 
 nav {
-  display: flex;
-  flex-direction: column;
   z-index: 1;
   position: fixed;
-  left:0;
-  height: 100%;
+  left: 0;
   justify-content: start;
   padding-top: 200px;
-  padding-left: 40px;
+  padding-left: 3%;
   font-size: 30px;
   font-weight: 900;
   transition: 0.6s;
