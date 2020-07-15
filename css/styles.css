@@ -7,14 +7,19 @@ body {
   font-family: "Palatino", "Georgia", "Times New Roman", serif;
 }
 
+nav {
+  z-index: 100;
+}
+
 section {
-  height: 100vh;
+  height: 110vh;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  padding: 30px;
-  margin-top: 32%;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 23%;
 }
 
 h1 {
@@ -54,6 +59,10 @@ blockquote {
   .source {
     width: 60%;
   }
+
+  section {
+    padding-top: 16%;
+  }
 }
 
 @media only screen and (min-width: 768px) {
@@ -66,6 +75,6 @@ blockquote {
   }
 
   section {
-    margin-top: 230px;
+    padding-top: 175px;
   }
 }
