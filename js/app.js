@@ -6,7 +6,7 @@ for (const entry of entries) {
   const entryBox = entry.closest("section");
   entryBox.setAttribute("id", entryText);
   const newElement = document.createElement('li');
-  newElement.innerHTML = `<a href="#${entryText}"">${entryText}</a>`;
+  newElement.innerHTML = `<a href="#${entryText}"">.</a>`;
   fragment.appendChild(newElement)
 };
 navList.appendChild(fragment);
