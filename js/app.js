@@ -9,17 +9,17 @@ function prepareNavigation() {
     entryBox.setAttribute("id", entryText);
     const newElement = document.createElement('li');
     newElement.innerHTML = `<a href="#${entryText}"">.</a>`;
-    uList.appendChild(newElement)
+    newElement.addEventListener('click', (evt) => {
+      evt.preventDefault();
+      const idTarget = document.getElementById(entryText);
+      idTarget.scrollIntoView({behavior: "smooth"}); // not working on ios //
+      history.pushState(null, null, entryText); // not working //
+    });
+    uList.appendChild(newElement);
   };
   navList.appendChild(uList);
   document.body.insertBefore(navList, mainSpot);
-  navList.addEventListener('click', respondClick);
 };
-
-function respondClick(evt) {
-  evt.preventDefault();
-  evt.target.scrollIntoView({behavior: "smooth"});
-}
 
 function addLoadEvent(func){
   const oldonload = window.onload;
