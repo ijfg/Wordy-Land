@@ -28,6 +28,10 @@ ul, li {
   list-style-type: none;
 }
 
+main {
+  scroll-snap-type: y mandatory;
+}
+
 section {
   height: 110vh;
   display: flex;
@@ -37,7 +41,17 @@ section {
   padding-left: 30px;
   padding-right: 30px;
   padding-top: 23%;
+  color: black;
 }
+
+.on {
+  color: black;
+  /*transition: 1.5s;*/
+}
+
+/*.on:hover {
+  color: black;
+}*/
 
 h1 {
   font-size: 48px;

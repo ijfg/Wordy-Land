@@ -13,13 +13,45 @@ function prepareNavigation() {
       evt.preventDefault();
       const idTarget = document.getElementById(entryText);
       idTarget.scrollIntoView({behavior: "smooth"}); // not working on ios //
-      history.pushState(null, null, entryText); // not working //
+      //history.pushState(null, null, entryText); // not working //
     });
     uList.appendChild(newElement);
   };
   navList.appendChild(uList);
   document.body.insertBefore(navList, mainSpot);
 };
+
+function isInViewport(elem) {
+  let elemCheck = elem.getBoundingClientRect();
+  return (elemCheck.top >= 0 && elemCheck.top < window.innerHeight);
+};
+
+function activateSection() {
+  let headings = document.querySelectorAll('.entry');
+  headings = Array.from(headings);
+  for (const heading of headings) {
+    let section = heading.closest("section");
+    if (isInViewport(heading)) {
+      section.classList.add('on');
+      section.addEventListener('')
+    } else {
+      section.classList.remove('on');
+    };
+  };
+}
+
+// function activateSection() {
+//   let sections = document.querySelectorAll('.entry');
+//   sections = Array.from(sections);
+//   for (const section of sections) {
+//     let sectionCheck = section.getBoundingClientRect();
+//     if (sectionCheck.top >= 0 && sectionCheck.top < window.innerHeight) {
+//       section.classList.toggle('on');
+//     } else {
+//       section.classList.toggle('on');
+//     };
+//   };
+// };
 
 function addLoadEvent(func){
   const oldonload = window.onload;
@@ -34,3 +66,8 @@ function addLoadEvent(func){
 };
 
 addLoadEvent(prepareNavigation);
+//let el = document.getElementsByTagName('main');
+// window.addEventListener('scroll', activateSection(this)); // not working //
+document.addEventListener('scroll', function(e){
+  activateSection();
+});
