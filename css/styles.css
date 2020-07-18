@@ -14,7 +14,7 @@ nav {
   justify-content: start;
   padding-top: 200px;
   padding-left: 3%;
-  font-size: 30px;
+  font-size: 42px;
   font-weight: 900;
   transition: 0.6s;
 }
@@ -28,8 +28,12 @@ ul, li {
   list-style-type: none;
 }
 
+main {
+  scroll-snap-type: y mandatory;
+}
+
 section {
-  height: 110vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -37,7 +41,16 @@ section {
   padding-left: 30px;
   padding-right: 30px;
   padding-top: 23%;
+  color: black;
 }
+
+/*li #on {
+  color: red;/ // doesn't work with <li> and <a> //
+}*/
+
+/*.on:hover {
+  color: black; // if mouse on nav than no reaction, not what i want //
+}*/
 
 h1 {
   font-size: 48px;
@@ -93,5 +106,9 @@ blockquote {
 
   section {
     padding-top: 175px;
+  }
+
+  .front {
+    padding-top: 50px;
   }
 }
