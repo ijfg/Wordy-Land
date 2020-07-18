@@ -107,4 +107,8 @@ blockquote {
   section {
     padding-top: 175px;
   }
+
+  .front {
+    padding-top: 50px;
+  }
 }
