@@ -30,12 +30,11 @@ function activateSection() {
   let headings = document.querySelectorAll('.entry');
   headings = Array.from(headings);
   for (const heading of headings) {
-    let section = heading.closest("section");
+    let aAnchor = document.querySelector(`a[href="#${heading.textContent}"]`);
     if (isInViewport(heading)) {
-      section.classList.add('on');
-      section.addEventListener('')
+      aAnchor.style.color='#d63031';
     } else {
-      section.classList.remove('on');
+      aAnchor.style.color='black';
     };
   };
 }

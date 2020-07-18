@@ -14,7 +14,7 @@ nav {
   justify-content: start;
   padding-top: 200px;
   padding-left: 3%;
-  font-size: 30px;
+  font-size: 42px;
   font-weight: 900;
   transition: 0.6s;
 }
@@ -33,7 +33,7 @@ main {
 }
 
 section {
-  height: 110vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -44,13 +44,12 @@ section {
   color: black;
 }
 
-.on {
-  color: black;
-  /*transition: 1.5s;*/
-}
+/*li #on {
+  color: red;/ // doesn't work with <li> and <a> //
+}*/
 
 /*.on:hover {
-  color: black;
+  color: black; // if mouse on nav than no reaction, not what i want //
 }*/
 
 h1 {
