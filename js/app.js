@@ -13,7 +13,8 @@ function prepareNavigation() {
       evt.preventDefault();
       const idTarget = document.getElementById(entryText);
       idTarget.scrollIntoView({behavior: "smooth"}); // not working on ios //
-      //history.pushState(null, null, entryText); // not working //
+      const page = '';
+      history.pushState(page, '', `#${entryText}`);
     });
     uList.appendChild(newElement);
   };
