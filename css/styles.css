@@ -33,15 +33,16 @@ main {
 }
 
 section {
-  height: 100vh;
+  height: 120vh;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
   padding-left: 30px;
   padding-right: 30px;
-  padding-top: 23%;
+  padding-top: 25%;
   color: black;
+  scroll-behavior: smooth;
 }
 
 /*li #on {
@@ -91,7 +92,7 @@ blockquote {
   }
 
   section {
-    padding-top: 16%;
+    padding-top: 175px;
   }
 }
 
