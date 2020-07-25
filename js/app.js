@@ -12,15 +12,17 @@ function prepareNavigation() {
     newElement.addEventListener('click', (evt) => {
       evt.preventDefault();
       const element = document.getElementById(entryText);
+      const elemRectTop = element.getBoundingClientRect().top;
+      scrollTo(elemRectTop);
       //idTarget.scrollIntoView({behavior: "smooth"}); // not working on ios //
       //const targetDistance = idTarget.getBoundingClientRect();
       //const topDistance = targetDistance.top;
       //window.scrollBy({top: topDistance, left: 0, behavior: 'smooth'});
       // test 2 //smoothVerticalScroll(idTarget, 250);
-      const bodyRect = document.body.getBoundingClientRect();
-      const elemRect = element.getBoundingClientRect();
-      const offset = elemRect.top - bodyRect.top;
-      scrollTo(offset, null, 400);
+      // const bodyRect = document.body.getBoundingClientRect();
+      // const elemRect = element.getBoundingClientRect();
+      // const offset = elemRect.top - bodyRect.top;
+      // scrollTo(offset, null, 500);
       const page = '';
       history.pushState(page, '', `#${entryText}`);
     });
@@ -30,30 +32,22 @@ function prepareNavigation() {
   document.body.insertBefore(navList, mainSpot);
 };
 
-// Scroll test 2 start//
+const requestAnimFrame = (function() {
+  return window.requestAnimationFrame ||
+  window.webkitRequestAnimationFrame ||
+  window.mozRequestAnimationFrame ||
+  function(callback) {window.setTimeout(callback, 1000 / 60);
+  };
+})();
 
-function smoothVerticalScroll(e, time) {
-    var eTop = e.getBoundingClientRect().top;
-    var eAmount = eTop / 100;
-    var currentTime = 0;
-    while (currentTime <= time) {
-        window.setTimeout(scrollToTop, currentTime, eAmount);
-        currentTime += time / 100;
-    };
+function move(amount) {
+  // doesn't work // window.scrollBy(0, amount);
+  document.documentElement.scrollTop = amount;
+  document.body.parentNode.scrollTop = amount;
+  document.body.scrollTop = amount;
 };
 
-function scrollToTop(eAmount) {
-  window.scrollBy(0, eAmount);
-};
-
-// Scroll test 2 end //
-
-// Scroll test 3 start //
-
-// const list = document.getElementsByClassName('menu-list')[0];
-
-// easing functions http://goo.gl/5HLl8
-// t: currentTime, b: start, c: change, d: duration
+// t: currentTime, b: beginPosition, c: changeDistance, d: animationDuration
 Math.easeInOutQuad = function(t, b, c, d) {
   t /= d / 2;
   if (t < 1) {
@@ -61,56 +55,106 @@ Math.easeInOutQuad = function(t, b, c, d) {
   } else {
     t--;
     return -c / 2 * (t * (t - 2) - 1) + b;
-  }
+  };
 };
 
-// requestAnimationFrame for Smart Animating http://goo.gl/sx5sts
-var requestAnimFrame = (function() {
-  return window.requestAnimationFrame || window.webkitRequestAnimationFrame ||
-  window.mozRequestAnimationFrame || function(callback) {
-    window.setTimeout(callback, 1000 / 60);
-  };
-})();
-
-function scrollTo(to, callback, duration) {
-  // because it's difficult to detect the scrolling element,
-  // just move them all
-  function move(amount) {
-    document.documentElement.scrollTop = amount;
-    document.body.parentNode.scrollTop = amount;
-    document.body.scrollTop = amount;
-  }
-
-  function position() {
-    // returns the number of pixels that the document is currently scrolled
-    // vertically
-    return document.documentElement.scrollTop ||
-    document.body.parentNode.scrollTop || document.body.scrollTop;
-  }
-  var start = position(),
-    change = to - start,
-    currentTime = 0,
-    increment = 20;
-  duration = (typeof(duration) === 'undefined') ? 500 : duration;
-  var animateScroll = function() {
-    // increment the time
+function scrollTo(distance) {
+  const beginPos = window.scrollY;
+  let currentTime = 0;
+  let increment = 20;
+  let animateScroll = function () {
     currentTime += increment;
-    // find the value with the quadratic in-out easing function
-    var val = Math.easeInOutQuad(currentTime, start, change, duration);
-    // move the document.body
-    move(val);
-    // do the animation unless its over
-    if (currentTime < duration) {
+    let value = Math.easeInOutQuad(currentTime, beginPos, distance, 500);
+    move(value);
+    if (currentTime < 500) {
       requestAnimFrame(animateScroll);
-    } else {
-      if (callback && typeof(callback) === 'function') {
-        // the animation is done so lets callback
-        callback();
-      }
-    }
+    };
   };
   animateScroll();
-}
+};
+
+// Scroll test 2 start//
+//
+// function smoothVerticalScroll(e, time) {
+//     var eTop = e.getBoundingClientRect().top;
+//     var eAmount = eTop / 100;
+//     var currentTime = 0;
+//     while (currentTime <= time) {
+//         window.setTimeout(scrollToTop, currentTime, eAmount);
+//         currentTime += time / 100;
+//     };
+// };
+//
+// function scrollToTop(eAmount) {
+//   window.scrollBy(0, eAmount);
+// };
+//
+// // Scroll test 2 end //
+//
+// // Scroll test 3 start //
+//
+
+// easing functions http://goo.gl/5HLl8
+// t: currentTime, b: start, c: change, d: duration
+// Math.easeInOutQuad = function(t, b, c, d) {
+//   t /= d / 2;
+//   if (t < 1) {
+//     return c / 2 * t * t + b
+//   } else {
+//     t--;
+//     return -c / 2 * (t * (t - 2) - 1) + b;
+//   }
+// };
+//
+// // requestAnimationFrame for Smart Animating http://goo.gl/sx5sts
+// var requestAnimFrame = (function() {
+//   return window.requestAnimationFrame || window.webkitRequestAnimationFrame ||
+//   window.mozRequestAnimationFrame || function(callback) {
+//     window.setTimeout(callback, 1000 / 60);
+//   };
+// })();
+//
+// function scrollTo(to, callback, duration) {
+//   // because it's difficult to detect the scrolling element,
+//   // just move them all
+  // function move(amount) {
+  //   // doesn't work // window.scrollBy(0, amount);
+  //   document.documentElement.scrollTop = amount;
+  //   document.body.parentNode.scrollTop = amount;
+  //   document.body.scrollTop = amount;
+  // }
+//
+//   function position() {
+//     // returns the number of pixels that the document is currently scrolled
+//     // vertically
+//     return document.documentElement.scrollTop ||
+//     document.body.parentNode.scrollTop ||
+//     document.body.scrollTop;
+//   }
+//   var start = position(),
+//     change = to - start,
+//     currentTime = 0,
+//     increment = 20;
+//   duration = (typeof(duration) === 'undefined') ? 500 : duration;
+//   var animateScroll = function() {
+//     // increment the time
+//     currentTime += increment;
+//     // find the value with the quadratic in-out easing function
+//     var val = Math.easeInOutQuad(currentTime, start, change, duration);
+//     // move the document.body
+//     move(val);
+//     // do the animation unless its over
+//     if (currentTime < duration) {
+//       requestAnimFrame(animateScroll);
+//     } else {
+//       if (callback && typeof(callback) === 'function') {
+//         // the animation is done so lets callback
+//         callback();
+//       }
+//     }
+//   };
+//   animateScroll();
+// }
 
 /* list.addEventListener('click', e => {
   const {
