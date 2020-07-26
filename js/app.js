@@ -58,13 +58,19 @@ Math.easeInOutQuad = function(t, b, c, d) {
   };
 };
 
+Math.inOutQuintic = function(t, b, c, d) {
+  var ts = (t/=d)*t,
+  tc = ts*t;
+  return b+c*(6*tc*ts + -15*ts*ts + 10*tc);
+};
+
 function scrollTo(distance) {
   const beginPos = window.scrollY;
   let currentTime = 0;
   let increment = 20;
   let animateScroll = function () {
     currentTime += increment;
-    let value = Math.easeInOutQuad(currentTime, beginPos, distance, 500);
+    let value = Math.inOutQuintic(currentTime, beginPos, distance, 500);
     move(value);
     if (currentTime < 500) {
       requestAnimFrame(animateScroll);
