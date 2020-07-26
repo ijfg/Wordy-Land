@@ -70,9 +70,9 @@ function scrollTo(distance) {
   let increment = 20;
   let animateScroll = function () {
     currentTime += increment;
-    let value = Math.inOutQuintic(currentTime, beginPos, distance, 500);
+    let value = Math.inOutQuintic(currentTime, beginPos, distance, 550);
     move(value);
-    if (currentTime < 500) {
+    if (currentTime < 550) {
       requestAnimFrame(animateScroll);
     };
   };
