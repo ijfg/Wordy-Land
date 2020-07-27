@@ -87,11 +87,12 @@ function isInViewport(elem) {
 
 let number = 0;
 function activateSection(timestamp) {
-  if (timestamp) {
-    let diff = timestamp - number;
-    console.log('frame', diff);
-    number = timestamp;
-  }
+  //// to see how much time each frame takes //
+  // if (timestamp) {
+  //   let diff = timestamp - number;
+  //   console.log('frame', diff);
+  //   number = timestamp;
+  // };
   let headings = document.querySelectorAll('.entry');
   headings = Array.from(headings);
   for (const heading of headings) {
@@ -121,7 +122,7 @@ function throttle(action) {
   return function() {
     if (isRunning) return;
     isRunning = true;
-    window.requestAnimationFrame(action);
+    requestAnimFrame(action);
       isRunning = false;
     };
   };
