@@ -30,6 +30,7 @@ function prepareNavigation() {
 // 3. https://stackoverflow.com/questions/8316882/what-is-an-easing-function
 // 4. https://easings.net
 // 5. http://gizma.com/easing/
+// 6. https://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
 
 const requestAnimFrame = (function() {
   return window.requestAnimationFrame ||
@@ -74,11 +75,16 @@ function scrollTo(distance) {
   animateScroll();
 };
 
-// My isInViewport, activateSection, and its eventListener are a combination of:
+// My isInViewport, activateSection, and throttle functions are researches of:
 // 1. https://gomakethings.com/how-to-test-if-an-element-is-in-the-viewport-with
 // -vanilla-javascript/
 // 2. https://evilmartians.com/chronicles/scroll-to-the-future-modern-javascript
 // -css-scrolling-implementations
+// 3. https://medium.com/walkme-engineering/debounce-and-throttle-in-real-life-
+// scenarios-1cc7e2e38c68
+// 4. https://www.youtube.com/watch?v=zBRqnSiq_VM
+// 5. https://forum.kirupa.com/t/timestamp-in-callback-requestanimationframe-
+// function/642777
 
 function isInViewport(elem) {
   let elemCheck = elem.getBoundingClientRect();
