@@ -23,6 +23,14 @@ function prepareNavigation() {
   document.body.insertBefore(navList, mainSpot);
 };
 
+// My scrollTo function is a study of a few sources:
+// 1. https://stackoverflow.com/questions/58266742/creating-smooth-scroll-in-
+// react-browser-friendly?noredirect=1&lq=1
+// 2. https://medium.com/@roderickhsiao/implement-smooth-scrolling-79efb20b6535
+// 3. https://stackoverflow.com/questions/8316882/what-is-an-easing-function
+// 4. https://easings.net
+// 5. http://gizma.com/easing/
+
 const requestAnimFrame = (function() {
   return window.requestAnimationFrame ||
   window.webkitRequestAnimationFrame ||
@@ -31,29 +39,20 @@ const requestAnimFrame = (function() {
   };
 })();
 
+function position() {
+    return document.documentElement.scrollTop ||
+    document.body.parentNode.scrollTop ||
+    document.body.scrollTop;
+  }
+
 function move(amount) {
   document.documentElement.scrollTop = amount;
   document.body.parentNode.scrollTop = amount;
   document.body.scrollTop = amount;
 };
 
-// My scrollTo function is a study of a few sources:
-// 1. https://stackoverflow.com/questions/58266742/creating-smooth-scroll-in-
-// react-browser-friendly?noredirect=1&lq=1
-// 2. https://medium.com/@roderickhsiao/implement-smooth-scrolling-79efb20b6535
-// 3. https://easings.net
-
 // t: currentTime, b: beginPosition, c: changeDistance, d: animationDuration
-Math.easeInOutQuad = function(t, b, c, d) {
-  t /= d / 2;
-  if (t < 1) {
-    return c / 2 * t * t + b
-  } else {
-    t--;
-    return -c / 2 * (t * (t - 2) - 1) + b;
-  };
-};
-
+// See Quintic easing animation example: https://easings.net/#easeInOutQuint
 Math.inOutQuintic = function(t, b, c, d) {
   var ts = (t/=d)*t,
   tc = ts*t;
@@ -61,7 +60,7 @@ Math.inOutQuintic = function(t, b, c, d) {
 };
 
 function scrollTo(distance) {
-  const beginPos = window.scrollY;
+  const beginPos = position();
   let currentTime = 0;
   let increment = 20;
   let animateScroll = function () {
@@ -75,12 +74,24 @@ function scrollTo(distance) {
   animateScroll();
 };
 
+// My isInViewport, activateSection, and its eventListener are a combination of:
+// 1. https://gomakethings.com/how-to-test-if-an-element-is-in-the-viewport-with
+// -vanilla-javascript/
+// 2. https://evilmartians.com/chronicles/scroll-to-the-future-modern-javascript
+// -css-scrolling-implementations
+
 function isInViewport(elem) {
   let elemCheck = elem.getBoundingClientRect();
   return (elemCheck.top >= 0 && elemCheck.top < window.innerHeight);
 };
 
-function activateSection() {
+let number = 0;
+function activateSection(timestamp) {
+  if (timestamp) {
+    let diff = timestamp - number;
+    console.log('frame', diff);
+    number = timestamp;
+  }
   let headings = document.querySelectorAll('.entry');
   headings = Array.from(headings);
   for (const heading of headings) {
@@ -105,7 +116,15 @@ function addLoadEvent(func){
   };
 };
 
+function throttle(action) {
+  let isRunning = false;
+  return function() {
+    if (isRunning) return;
+    isRunning = true;
+    window.requestAnimationFrame(action);
+      isRunning = false;
+    };
+  };
+
 addLoadEvent(prepareNavigation);
-document.addEventListener('scroll', function(e){
-  activateSection();
-});
+document.addEventListener('scroll', throttle(activateSection));
