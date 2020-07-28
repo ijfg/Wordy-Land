@@ -45,14 +45,6 @@ section {
   scroll-behavior: smooth;
 }
 
-/*li #on {
-  color: red;/ // doesn't work with <li> and <a> //
-}*/
-
-/*.on:hover {
-  color: black; // if mouse on nav than no reaction, not what i want //
-}*/
-
 h1 {
   font-size: 48px;
   text-align: center;
