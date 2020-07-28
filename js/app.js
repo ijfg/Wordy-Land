@@ -133,5 +133,8 @@ function throttle(action) {
     };
   };
 
+let vh = window.innerHeight * 0.01;
+document.documentElement.style.setProperty('--vh', `${vh}px`);
+
 addLoadEvent(prepareNavigation);
 document.addEventListener('scroll', throttle(activateSection));
