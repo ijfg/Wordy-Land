@@ -60,6 +60,10 @@ h3 {
   text-align: center;
 }
 
+.explanation {
+  padding-top: 20px;
+}
+
 blockquote {
   font-size: 17px;
   font-style: italic;
@@ -75,10 +79,6 @@ blockquote {
   text-align: right;
   font-style: italic;
   padding-top: 35px;
-}
-
-.pad-top-20 {
-  padding-top: 20px;
 }
 
 @media only screen and (min-width: 400px) {
