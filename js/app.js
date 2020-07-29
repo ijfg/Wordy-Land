@@ -91,7 +91,7 @@ function isInViewport(elem) {
   return (elemCheck.top >= 0 && elemCheck.top < window.innerHeight);
 };
 
-let number = 0;
+// let number = 0;
 function activateSection(timestamp) {
   //// to see how much time each frame takes //
   // if (timestamp) {
