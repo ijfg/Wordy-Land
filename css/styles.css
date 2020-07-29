@@ -12,11 +12,10 @@ nav {
   position: fixed;
   left: 0;
   justify-content: start;
-  padding-top: 200px;
+  padding-top: 40%;
   padding-left: 3%;
   font-size: 42px;
   font-weight: 900;
-  transition: 0.6s;
 }
 
 nav a, nav a:link, nav a:visited {
@@ -51,6 +50,10 @@ h1 {
   text-align: center;
 }
 
+.front {
+  padding-top: 40px;
+}
+
 h3 {
   font-size: 19px;
   font-weight: normal;
@@ -71,6 +74,7 @@ blockquote {
   width: 85%;
   text-align: right;
   font-style: italic;
+  padding-top: 35px;
 }
 
 .pad-top-20 {
@@ -120,6 +124,10 @@ blockquote {
 }
 
 @media only screen and (min-width: 768px) {
+  nav {
+    padding-top: 200px;
+  }
+
   h1 {
     font-size: 48px;
   }
@@ -136,6 +144,7 @@ blockquote {
   .source {
     font-size: 18px;
     width: 40%;
+    padding-right: 40px;
   }
 
   section {
