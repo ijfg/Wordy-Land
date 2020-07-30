@@ -3,8 +3,13 @@
   margin: 0px;
 }
 
+html {
+  scroll-snap-type: y mandatory;
+}
+
 body {
   font-family: "Palatino Linotype", "Book Antiqua", "Palatino", serif;
+  scroll-snap-type: y mandatory;
 }
 
 nav {
@@ -27,12 +32,10 @@ ul, li {
   list-style-type: none;
 }
 
-main {
-  scroll-snap-type: y mandatory;
-}
 
 section {
   height: 120vh;
+  scroll-snap-align: start;
   height: calc(var(--vh, 1vh) * 120);
   display: flex;
   flex-direction: column;
@@ -60,8 +63,18 @@ h3 {
   text-align: center;
 }
 
+.sub {
+  color: black;
+  padding-top: 20px;
+}
+
 .explanation {
   padding-top: 20px;
+}
+
+.veil {
+  color: white;
+  transition: 5s;
 }
 
 blockquote {

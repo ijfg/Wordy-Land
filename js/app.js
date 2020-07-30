@@ -105,8 +105,10 @@ function activateSection(timestamp) {
     let aAnchor = document.querySelector(`a[href="#${heading.textContent}"]`);
     if (isInViewport(heading)) {
       aAnchor.style.color='#d63031';
+      heading.nextElementSibling.style.color="black";
     } else {
       aAnchor.style.color='black';
+      heading.nextElementSibling.style.color="white";
     };
   };
 };
@@ -137,4 +139,5 @@ let vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty('--vh', `${vh}px`);
 
 addLoadEvent(prepareNavigation);
+addLoadEvent(activateSection);
 document.addEventListener('scroll', throttle(activateSection));
