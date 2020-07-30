@@ -3,12 +3,14 @@ function prepareNavigation() {
   const navList = document.createElement('nav');
   const uList = document.createElement('ul');
   const mainSpot = document.querySelector('main');
+  // Create navigation tag for each entry
   for (const entry of entries) {
     const entryText = entry.textContent;
     const entryBox = entry.closest("section");
     entryBox.setAttribute("id", entryText);
     const newElement = document.createElement('li');
     newElement.innerHTML = `<a href="#${entryText}"">.</a>`;
+    // Add eventlisterner for each tag
     newElement.addEventListener('click', (evt) => {
       evt.preventDefault();
       const element = document.getElementById(entryText);
@@ -66,9 +68,9 @@ function scrollTo(distance) {
   let increment = 20;
   let animateScroll = function () {
     currentTime += increment;
-    let value = Math.inOutQuintic(currentTime, beginPos, distance, 550);
+    let value = Math.inOutQuintic(currentTime, beginPos, distance, 600);
     move(value);
-    if (currentTime < 550) {
+    if (currentTime < 600) {
       requestAnimFrame(animateScroll);
     };
   };
@@ -91,14 +93,7 @@ function isInViewport(elem) {
   return (elemCheck.top >= 0 && elemCheck.top < window.innerHeight);
 };
 
-// let number = 0;
-function activateSection(timestamp) {
-  //// to see how much time each frame takes //
-  // if (timestamp) {
-  //   let diff = timestamp - number;
-  //   console.log('frame', diff);
-  //   number = timestamp;
-  // };
+function activateSection() {
   let headings = document.querySelectorAll('.entry');
   headings = Array.from(headings);
   for (const heading of headings) {
@@ -106,9 +101,12 @@ function activateSection(timestamp) {
     if (isInViewport(heading)) {
       aAnchor.style.color='#d63031';
       heading.nextElementSibling.style.color="black";
+      // heading.nextElementSibling.nextElementSibling.style.color="black";
+      // heading.nextElementSibling.nextElementSibling.nextElementSibling.style.color="black";
     } else {
       aAnchor.style.color='black';
       heading.nextElementSibling.style.color="white";
+      // heading.nextElementSibling.nextElementSibling.style.color="white";
     };
   };
 };
@@ -134,9 +132,6 @@ function throttle(action) {
       isRunning = false;
     };
   };
-
-let vh = window.innerHeight * 0.01;
-document.documentElement.style.setProperty('--vh', `${vh}px`);
 
 addLoadEvent(prepareNavigation);
 addLoadEvent(activateSection);
