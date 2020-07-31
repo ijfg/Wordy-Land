@@ -11,5 +11,6 @@ All text contents are from Merriam-Webster Word of the Day: https://www.merriam-
 
 Questions
 
-1. scroll-snap: I really wish I could implement "scroll-snap-type: y mandatory" in css. However, it causes my scrollTo function to glitch, which I burnt my brain trying but still wasn't able to fix.
-2. viewport-height-vertically-centered-navigation-menu: I wanted the navigation dots to grow from the center whenever new entries are added, but so far no luck finding out how.
+1. scroll-snap: I really wish I could implement "scroll-snap-type: y mandatory" in css. However, it causes my scrollToSection function to glitch. I burnt my brain trying but still wasn't able to fix.
+
+2. viewport-height-vertically-centered-navigation-menu: I wanted the navigation dots to grow from the center whenever new entries are added, but couldn't figure out how.
