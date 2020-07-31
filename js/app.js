@@ -3,17 +3,20 @@ function prepareNavigation() {
   const navList = document.createElement('nav');
   const uList = document.createElement('ul');
   const mainSpot = document.querySelector('main');
-  for (const entry of entries) { // Create navigation tag for each entry
+  // Create navigation tag for each entry
+  for (const entry of entries) {
     const entryText = entry.textContent;
     const entryBox = entry.closest("section");
     entryBox.setAttribute("id", entryText);
     const newElement = document.createElement('li');
     newElement.innerHTML = `<a href="#${entryText}"">.</a>`;
+    // Create listener for each nav
     newElement.addEventListener('click', (evt) => {
       evt.preventDefault();
       const element = document.getElementById(entryText);
       const elemRectTop = element.getBoundingClientRect().top;
-      scrollTo(elemRectTop);
+      // Perform scroll to appropriate section
+      scrollToSection(elemRectTop);
       const page = '';
       history.pushState(page, '', `#${entryText}`);
     });
@@ -23,7 +26,7 @@ function prepareNavigation() {
   document.body.insertBefore(navList, mainSpot);
 };
 
-// My scrollTo function is a study of a few sources:
+// My scrollToSection function is a study of a few sources:
 // 1. https://stackoverflow.com/questions/58266742/creating-smooth-scroll-in-
 // react-browser-friendly?noredirect=1&lq=1
 // 2. https://medium.com/@roderickhsiao/implement-smooth-scrolling-79efb20b6535
@@ -52,7 +55,7 @@ Math.inOutQuintic = (t, b, c, d) => {
   return b+c*(6*tc*ts + -15*ts*ts + 10*tc);
 };
 
-function scrollTo(distance) {
+function scrollToSection(distance) {
   const beginPos = position();
   let currentTime = 0;
   let increment = 20;
