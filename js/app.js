@@ -32,14 +32,6 @@ function prepareNavigation() {
 // 5. http://gizma.com/easing/
 // 6. https://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
 
-const requestAnimFrame = (function() {
-  return window.requestAnimationFrame ||
-  window.webkitRequestAnimationFrame ||
-  window.mozRequestAnimationFrame ||
-  function(callback) {window.setTimeout(callback, 1000 / 60);
-  };
-})();
-
 function position() {
     return document.documentElement.scrollTop ||
     document.body.parentNode.scrollTop ||
@@ -54,7 +46,7 @@ function move(amount) {
 
 // t: currentTime, b: beginPosition, c: changeDistance, d: animationDuration
 // See Quintic easing animation example: https://easings.net/#easeInOutQuint
-Math.inOutQuintic = function(t, b, c, d) {
+Math.inOutQuintic = (t, b, c, d) => {
   var ts = (t/=d)*t,
   tc = ts*t;
   return b+c*(6*tc*ts + -15*ts*ts + 10*tc);
@@ -64,12 +56,12 @@ function scrollTo(distance) {
   const beginPos = position();
   let currentTime = 0;
   let increment = 20;
-  let animateScroll = function () {
+  let animateScroll = () => {
     currentTime += increment;
     let value = Math.inOutQuintic(currentTime, beginPos, distance, 600);
     move(value);
     if (currentTime < 600) {
-      requestAnimFrame(animateScroll);
+      window.requestAnimationFrame(animateScroll);
     };
   };
   animateScroll();
@@ -111,7 +103,7 @@ function addLoadEvent(func){
   if (typeof window.onload != "function") {
     window.onload = func;
   } else {
-    window.onload = function(){
+    window.onload = () => {
       oldonload();
       func();
     };
@@ -120,10 +112,10 @@ function addLoadEvent(func){
 
 function throttle(action) {
   let isRunning = false;
-  return function() {
+  return () => {
     if (isRunning) return;
     isRunning = true;
-    requestAnimFrame(action);
+    window.requestAnimationFrame(action);
       isRunning = false;
     };
   };
