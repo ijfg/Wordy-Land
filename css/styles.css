@@ -17,11 +17,10 @@ body {
 nav {
   z-index: 1;
   position: fixed;
+  top: 22%;
   left: 0;
-  justify-content: start;
-  padding-top: 40%;
-  padding-left: 3%;
-  font-size: 42px;
+  padding-left: 2.5%;
+  font-size: 40px;
   font-weight: 900;
 }
 
@@ -38,7 +37,6 @@ ul, li {
 section {
   height: 120vh;
   /* scroll-snap-align: start; */
-  height: calc(var(--vh, 1vh) * 120);
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -68,6 +66,7 @@ h3 {
 .sub {
   color: black;
   padding-top: 20px;
+  width: 90%;
 }
 
 .explanation {
@@ -76,7 +75,7 @@ h3 {
 
 .veil {
   color: white;
-  transition: 4s;
+  transition: 5.5s 1s;
 }
 
 blockquote {
@@ -87,7 +86,6 @@ blockquote {
   width: 90%;
   line-height: 1.45;
   color: black;
-  transition: 4s 3s;
 }
 
 .source {
@@ -97,7 +95,6 @@ blockquote {
   font-style: italic;
   padding-top: 35px;
   color: black;
-  transition: 4s 3s;
 }
 
 @media only screen and (min-width: 400px) {
@@ -144,7 +141,7 @@ blockquote {
 
 @media only screen and (min-width: 768px) {
   nav {
-    padding-top: 200px;
+    /* padding-top: 200px; */
   }
 
   h1 {

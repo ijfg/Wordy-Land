@@ -3,14 +3,12 @@ function prepareNavigation() {
   const navList = document.createElement('nav');
   const uList = document.createElement('ul');
   const mainSpot = document.querySelector('main');
-  // Create navigation tag for each entry
-  for (const entry of entries) {
+  for (const entry of entries) { // Create navigation tag for each entry
     const entryText = entry.textContent;
     const entryBox = entry.closest("section");
     entryBox.setAttribute("id", entryText);
     const newElement = document.createElement('li');
     newElement.innerHTML = `<a href="#${entryText}"">.</a>`;
-    // Add eventlisterner for each tag
     newElement.addEventListener('click', (evt) => {
       evt.preventDefault();
       const element = document.getElementById(entryText);
@@ -46,7 +44,7 @@ function position() {
     return document.documentElement.scrollTop ||
     document.body.parentNode.scrollTop ||
     document.body.scrollTop;
-  }
+  };
 
 function move(amount) {
   document.documentElement.scrollTop = amount;
@@ -101,12 +99,9 @@ function activateSection() {
     if (isInViewport(heading)) {
       aAnchor.style.color='#d63031';
       heading.nextElementSibling.style.color="black";
-      // heading.nextElementSibling.nextElementSibling.style.color="black";
-      // heading.nextElementSibling.nextElementSibling.nextElementSibling.style.color="black";
     } else {
       aAnchor.style.color='black';
       heading.nextElementSibling.style.color="white";
-      // heading.nextElementSibling.nextElementSibling.style.color="white";
     };
   };
 };
