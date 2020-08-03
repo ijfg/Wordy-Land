@@ -4,20 +4,28 @@
 }
 
 html {
-  /* conflict with scrollTo */
   /* scroll-snap-type: y mandatory; */
+  /* conflict with scrollToSection: when implemented, when clicking navigation
+  dots, glitches would happend during srolling to sections. */
 }
 
 body {
   font-family: "Palatino Linotype", "Book Antiqua", "Palatino", serif;
-  /* conflict with scrollTo */
+  /* conflict with scrollToSection */
   /* scroll-snap-type: y mandatory; */
+  /* for safari to work */
+  margin: auto;
 }
 
 nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  /* must add height to make centering work */
+  margin: auto;
   z-index: 1;
   position: fixed;
-  top: 22%;
   left: 0;
   padding-left: 2.5%;
   font-size: 40px;
@@ -32,7 +40,6 @@ nav a, nav a:link, nav a:visited {
 ul, li {
   list-style-type: none;
 }
-
 
 section {
   height: 120vh;
